@@ -1,0 +1,29 @@
+config:
+  target: "https://placeholder.com"
+  phases:
+    - duration: 300  # Test for 300 seconds (5 minutes)
+      arrivalRate: 10  # 10 requests per second
+      name: "Low load"
+    - duration: 300
+      arrivalRate: 50  # 50 requests per second
+      name: "Medium load"
+    - duration: 300
+      arrivalRate: 100  # 100 requests per second
+      name: "High load"
+
+scenarios:
+  - flow:
+      - get:
+          url: "https://i8o07e0usd.execute-api.us-east-1.amazonaws.com/DEV/arithmeticComputationAPI"
+          input_string: "Test load on F001"
+      - post:
+          url: "https://69bcivyzvd.execute-api.us-east-1.amazonaws.com/DEV/fibonacciCalculationAPI"
+          json: {"n":"10"}
+          input_string: "Test load on F002"
+      - get:
+          url: "https://532yzir3f4.execute-api.us-east-1.amazonaws.com/DEV/randomDataGenrator"
+          input_string: "Test load on F003"
+      - post:
+          url: "https://3ome8mco9f.execute-api.us-east-1.amazonaws.com/DEV/stringManipulationAPI"
+          json: {"input_string": "Serverless is awesome!"}
+          input_string: "Test load on F004"
